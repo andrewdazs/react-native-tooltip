@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 const { ToolTipMenu } = NativeModules;
 const RCTToolTipText = requireNativeComponent('RCTToolTipText', null);
 
-export class ViewClass extends Component {
+export default class ViewClass extends Component {
   static propTypes = {
     actions: PropTypes.arrayOf(PropTypes.shape({
       text: PropTypes.string.isRequired,
