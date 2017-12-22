@@ -1,59 +1,65 @@
-'use strict';
+// @flow
 
-var {
+import React, { Component } from 'react';
+import {
   requireNativeComponent,
   TouchableHighlight,
   View,
   NativeModules,
   findNodeHandle,
-} = require('react-native');
-var React = require('react');
-var ToolTipMenu = NativeModules.ToolTipMenu;
-var RCTToolTipText = requireNativeComponent('RCTToolTipText', null);
+} from 'react-native';
+import PropTypes from 'prop-types';
 
-var propTypes = {
-  actions: React.PropTypes.arrayOf(React.PropTypes.shape({
-    text: React.PropTypes.string.isRequired,
-    onPress: React.PropTypes.func,
-  })),
-  arrowDirection: React.PropTypes.oneOf(['up', 'down', 'left', 'right']),
-  longPress: React.PropTypes.bool,
-  ...TouchableHighlight.propTypes,
-};
+const { ToolTipMenu } = NativeModules;
+const RCTToolTipText = requireNativeComponent('RCTToolTipText', null);
 
-var ViewClass = React.createClass({
-  getDefaultProps: function() {
+export class ViewClass extends Component {
+  static propTypes = {
+    actions: PropTypes.arrayOf(PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      onPress: PropTypes.func,
+    })),
+    arrowDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+    longPress: PropTypes.bool,
+    ...TouchableHighlight.propTypes,
+  }
+
+  getDefaultProps() {
     return {
       arrowDirection: 'down'
     };
-  },
+  }
 
-  showMenu: function() {
-    ToolTipMenu.show(findNodeHandle(this.refs.toolTipText), this.getOptionTexts(), this.props.arrowDirection);
-  },
-  hideMenu: function() {
+  showMenu() {
+    ToolTipMenu.show(
+      findNodeHandle(this.refs.toolTipText),
+      this.getOptionTexts(),
+      this.props.arrowDirection
+    );
+  }
+
+  hideMenu() {
     ToolTipMenu.hide();
-  },
-  
-  getOptionTexts: function() {
+  }
+
+  getOptionTexts() {
     return this.props.actions.map((option) => option.text);
-  },
+  }
 
-  // Assuming there is no actions with the same text
-  getCallback: function(optionText) {
-    var selectedOption = this.props.actions.find((option) => option.text === optionText);
+  getCallback(optionText) {
+    const selectedOption = this.props.actions.find(
+      (option) => option.text === optionText
+    );
 
-    if (selectedOption) {
-      return selectedOption.onPress;
-    }
+    return selectedOption ? selectedOption.onPress : null
+  }
 
-    return null;
-  },
+  getTouchableHighlightProps() {
+    let props = {};
 
-  getTouchableHighlightProps: function() {
-    var props = {};
-
-    Object.keys(TouchableHighlight.propTypes).forEach((key) => props[key] = this.props[key]);
+    Object.keys(TouchableHighlight.propTypes).forEach(
+      (key) => props[key] = this.props[key]
+    );
 
     if (this.props.longPress) {
       props.onLongPress = this.showMenu;
@@ -62,17 +68,17 @@ var ViewClass = React.createClass({
     }
 
     return props;
-  },
+  }
 
-  handleToolTipTextChange: function(event) {
+  handleToolTipTextChange(event) {
     var callback = this.getCallback(event.nativeEvent.text);
 
     if (callback) {
       callback(event);
     }
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <RCTToolTipText ref='toolTipText' onChange={this.handleToolTipTextChange}>
         <TouchableHighlight
@@ -85,8 +91,4 @@ var ViewClass = React.createClass({
       </RCTToolTipText>
     );
   }
-});
-
-ViewClass.propTypes = propTypes;
-
-module.exports = ViewClass;
+}
