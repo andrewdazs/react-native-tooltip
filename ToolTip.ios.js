@@ -24,10 +24,8 @@ export default class ViewClass extends Component {
     ...TouchableHighlight.propTypes,
   }
 
-  getDefaultProps() {
-    return {
-      arrowDirection: 'down'
-    };
+  static defaultProps = {
+    arrowDirection: 'down'
   }
 
   showMenu() {
