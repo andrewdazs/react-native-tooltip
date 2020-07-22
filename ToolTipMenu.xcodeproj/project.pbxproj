@@ -42,7 +42,6 @@
 		4681C0241B05271A004D67D4 /* ToolTipMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolTipMenu.h; sourceTree = "<group>"; };
 		4681C0261B05271A004D67D4 /* ToolTipMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolTipMenu.m; sourceTree = "<group>"; };
 		4681C02C1B05271A004D67D4 /* ToolTipMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToolTipMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4681C0321B05271A004D67D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		469F58B31B069F9800C571E8 /* RCTToolTipText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTToolTipText.h; sourceTree = "<group>"; };
 		469F58B61B069FF300C571E8 /* RCTToolTipText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTToolTipText.m; sourceTree = "<group>"; };
 		469F58B81B06A00C00C571E8 /* RCTToolTipTextManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTToolTipTextManager.m; sourceTree = "<group>"; };
@@ -72,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				4681C0231B05271A004D67D4 /* ToolTipMenu */,
-				4681C0301B05271A004D67D4 /* ToolTipMenuTests */,
 				4681C0221B05271A004D67D4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,22 +95,6 @@
 				469F58B81B06A00C00C571E8 /* RCTToolTipTextManager.m */,
 			);
 			path = ToolTipMenu;
-			sourceTree = "<group>";
-		};
-		4681C0301B05271A004D67D4 /* ToolTipMenuTests */ = {
-			isa = PBXGroup;
-			children = (
-				4681C0311B05271A004D67D4 /* Supporting Files */,
-			);
-			path = ToolTipMenuTests;
-			sourceTree = "<group>";
-		};
-		4681C0311B05271A004D67D4 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4681C0321B05271A004D67D4 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +157,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 4681C0181B05271A004D67D4;
